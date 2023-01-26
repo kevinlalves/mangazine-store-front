@@ -4,4 +4,4 @@ const CheckoutPage = () => {
   );
 };
 
-export default Checkout;
+export default CheckoutPage;
