@@ -139,11 +139,16 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
-    font-family: "Roleway", sans-serif !important;
+    font-family: "Dekko", cursive !important;
   }
 
   button {
     cursor: pointer;
+    border: none;
+  }
+
+  input:focus {
+    outline: none;
   }
 `;
 

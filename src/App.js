@@ -1,11 +1,12 @@
 import { ThemeProvider } from "styled-components";
 import colors from "./utils/constants/colors";
+import fonts from "./utils/constants/fonts";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./providers/UserProvider";
 
 export default function App() {
   return (
-    <ThemeProvider theme={{ colors }}>
+    <ThemeProvider theme={{ colors, fonts }}>
       <BrowserRouter>
         <UserProvider>
           <Routes>
