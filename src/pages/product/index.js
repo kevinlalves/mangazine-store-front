@@ -1,6 +1,14 @@
+import { StyledHome } from "./Index.styled";
+import ProductCard from "./ProductCard";
+
 const ProductPage = () => {
   return (
-    <>Product</>
+    <StyledHome>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+      <ProductCard/>
+    </StyledHome>
   );
 };
 

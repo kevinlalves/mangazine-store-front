@@ -10,6 +10,7 @@ export const FooterStyled = styled.footer`
   right: 0;
   display: flex;
   align-items: center;
+  z-index:1;
   justify-content: space-between;
   a{
     display: flex;
