@@ -15,10 +15,6 @@ export const UserProvider = (props) => {
     if (pathname === "/cadastro") {
       return;
     }
-
-    if (!user) {
-      navigate("/");
-    }
   }, [user, navigate, pathname]);
 
   return (

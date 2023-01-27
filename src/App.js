@@ -8,19 +8,24 @@ import SignInPage from "./pages/sign-in";
 import SignUpPage from "./pages/sign-up";
 import ProductPage from "./pages/product";
 import CheckoutPage from "./pages/checkout";
+import CartPage from "./pages/cart";
+import { MenuProvider } from "./providers/MenuProvider";
 
 export default function App() {
   return (
     <ThemeProvider theme={{ colors, fonts }}>
       <BrowserRouter>
         <UserProvider>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/sign-in" element={<SignInPage />} />
-            <Route path="/sign-up" element={<SignUpPage />} />
-            <Route path="/products/:id" element={<ProductPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-          </Routes>
+          <MenuProvider>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/products/:id" element={<ProductPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/sign-in" element={<SignInPage />} />
+              <Route path="/sign-up" element={<SignUpPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+            </Routes>
+          </MenuProvider>
         </UserProvider>
       </BrowserRouter>
     </ThemeProvider>
