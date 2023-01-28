@@ -3,27 +3,31 @@ import Alert from "../../components/alert/Alert";
 import Arrows from "../../components/arrows/Arrows";
 import { StyledHome } from "./Index.styled";
 import ProductCard from "./ProductCard";
-import useHome from "../../utils/hooks/useHome";
 import { getProducts } from  "../../services/mangazine-store-api"
 import per from "../../utils/constants/productsPer"
 import LoadingProducts from "../../components/loadingProducts/LoadingProducts";
 const ProductPage = () => {
+  const [lastPage, setLastPage] = useState(0)
+  const [page, setPage] = useState(1)
+  const [products, setProducts] = useState([])
   const [showAlert, setShowAlert] = useState(false);
   const handleShowAlert = () => {
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 1500);
   };
-  const { page, products, setProducts } = useHome();
   useEffect(() => {
     const promise = getProducts(page, per)
-    promise.then((e) => {setProducts(e.data)})
+    promise.then((e) => {
+      setProducts(e.data.productsList)
+      setLastPage(Math.floor(e.data.totalLength-1/per)+1)
+    })
     promise.catch((e) => console.log(e))
   }, [page, setProducts])
 
   return (
     <StyledHome>
       {products.length===0 ? <LoadingProducts/> : products.map((i) => <ProductCard handleShowAlert={handleShowAlert} name={i.name} image={i.image} rating={i.rating} price={i.price}/>)}
-      {products.length!==0 ? <Arrows/> : ''}
+      {products.length!==0 ? <Arrows page={page} setPage={setPage} lastPage={lastPage}/> : ''}
       {showAlert && (
         <Alert
           description={`Adicionado ao carrinho com sucesso`}

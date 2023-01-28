@@ -1,9 +1,9 @@
 import { Rings } from 'react-loader-spinner'
-import StyledLoadingContainer from './LoadingProducts.styled'
+import LoadingProductsStyled from './LoadingProducts.styled';
 
 const LoadingProducts = () => {
   return (
-    <StyledLoadingContainer>
+    <LoadingProductsStyled>
       <Rings
         height="200"
         width="200"
@@ -13,7 +13,7 @@ const LoadingProducts = () => {
         wrapperStyle
         wrapperClass
       />
-    </StyledLoadingContainer>
+    </LoadingProductsStyled>
   );
 };
 
