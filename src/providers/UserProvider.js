@@ -1,25 +1,42 @@
-import { createContext, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { createContext, useContext, useEffect } from "react";
+import { getCurrentUser } from "../services/mangazine-store-api";
 import useLocalStorage from "../utils/hooks/useLocalStorage";
+import { useAuth } from "./AuthProvider";
 
 export const USER_STORAGE_KEY = "user";
 
-export const UserProviderContext = createContext(null);
+const UserProviderContext = createContext({});
 
-export const UserProvider = (props) => {
+const UserProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage(USER_STORAGE_KEY);
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { token, setToken } = useAuth();
 
   useEffect(() => {
-    if (pathname === "/cadastro") {
+    if (user) {
       return;
     }
-  }, [user, navigate, pathname]);
+
+    const authenticateUser = async () => {
+      try {
+        const userData = await getCurrentUser(token);
+
+        setUser(userData);
+      }
+      catch (error) {
+        setToken({});
+      }
+    }
+
+    authenticateUser();
+  }, [token, user, setToken, setUser]);
 
   return (
     <UserProviderContext.Provider value={{ user, setUser }}>
-      {props.children}
+      {children}
     </UserProviderContext.Provider>
   );
 };
+
+export const useUser = () => useContext(UserProviderContext);
+
+export default UserProvider;

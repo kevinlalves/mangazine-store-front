@@ -12,6 +12,7 @@ export const HeaderStyled = styled.header`
   align-items: center;
   z-index: 1;
 `;
+
 export const Navbar = styled.nav`
   width: 100%;
   display: flex;
@@ -21,6 +22,7 @@ export const Navbar = styled.nav`
     width: 9.25rem;
   }
 `;
+
 export const IconButton = styled.button`
     color: ${({theme})=>theme.colors.secondary};
     background-color: transparent;

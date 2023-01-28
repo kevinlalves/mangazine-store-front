@@ -9,4 +9,5 @@ const colors = {
   success: "#4bb543",
   darkGrey: "#212121",
 };
+
 export default colors;

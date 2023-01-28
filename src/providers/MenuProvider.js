@@ -1,9 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
+export const MenuProviderContext = createContext({});
 
-export const MenuContext = createContext({});
-
-export const MenuProvider = ({children}) => {
+const MenuProvider = ({children}) => {
   const [statusButton, setStatusButton] = useState({
     user: false,
     home: true,
@@ -12,8 +11,12 @@ export const MenuProvider = ({children}) => {
   });
 
   return (
-    <MenuContext.Provider value={{ statusButton, setStatusButton }}>
+    <MenuProviderContext.Provider value={{ statusButton, setStatusButton }}>
       {children}
-    </MenuContext.Provider>
+    </MenuProviderContext.Provider>
   );
 };
+
+export const useMenu = () => useContext(MenuProviderContext);
+
+export default MenuProvider;

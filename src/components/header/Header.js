@@ -1,8 +1,9 @@
 import { HeaderStyled, Navbar } from "./Header.styled";
-import { IconStyled } from "../../styles/Icon.styled";
+import IconStyled from "../../styles/Icon.styled";
 import logo from "../../assets/logo-mangazine-header.png";
 import { BiSearchAlt, BiMenu } from "react-icons/bi";
 import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <HeaderStyled>
@@ -18,4 +19,5 @@ const Header = () => {
     </HeaderStyled>
   );
 };
+
 export default Header;
