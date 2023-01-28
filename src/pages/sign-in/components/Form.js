@@ -4,24 +4,29 @@ import { ButtonStyled } from "../../../styles/Button.styled";
 import FormStyled from "../../../styles/Form.styled";
 import { InputStyled } from "../../../styles/Input.styled";
 import validateSchema from "../../../utils/functions/validateSchema";
+import { useAuth } from "../../../providers/AuthProvider";
+import signInSchema from "../../../schemas/signIn";
 
 const Form = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setToken } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const isValidForm = validateSchema({ email, password });
+    const isValidForm = validateSchema({ email, password }, signInSchema);
     if (!isValidForm) {
       return;
     }
 
     try {
       const { token } = await signIn({ email, password });
+
+      setToken(token);
     }
     catch (error) {
-      window.alert(error);
+      window.alert(error.response?.data);
     }
   }
 
@@ -43,7 +48,7 @@ const Form = () => {
         height="60px"
         width="100%"
       />
-      <ButtonStyled>Entrar</ButtonStyled>
+      <ButtonStyled height="60px" width="100%" fontSize="1.5rem" >Entrar</ButtonStyled>
     </FormStyled>
   );
 };

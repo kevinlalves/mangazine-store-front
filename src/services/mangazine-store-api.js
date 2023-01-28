@@ -20,6 +20,6 @@ export const getCurrentUser = (token) => (
   apiRequests.get("/users", authorization(token))
 );
 
-export const listProducts = ({ page, per, token }) => (
-  apiRequests.get(`/products?page=${page}&per=${per}`, authorization(token))
+export const listProducts = ({ page, per }) => (
+  apiRequests.get(`/products?page=${page}&per=${per}`)
 );

@@ -9,6 +9,7 @@ export const ButtonStyled = styled.button`
   border-radius: 1.15rem;
   font-size: ${({fontSize})=>fontSize};
   transition: 150ms linear;
+  z-index: 100;
   &:hover {
     opacity: 0.95;
   }

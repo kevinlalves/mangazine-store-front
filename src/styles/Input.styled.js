@@ -9,4 +9,5 @@ export const InputStyled = styled.input`
   border-radius: 1.15rem;
   font-size: 1.5rem;
   padding-left: 1rem;
+  z-index: 100;
 `;
