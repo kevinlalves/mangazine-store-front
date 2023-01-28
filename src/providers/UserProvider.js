@@ -1,5 +1,6 @@
 import { createContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import unauthenticatedPages from "../utils/constants/unauthenticatedPages";
 import useLocalStorage from "../utils/hooks/useLocalStorage";
 
 export const USER_STORAGE_KEY = "user";
@@ -12,7 +13,7 @@ export const UserProvider = (props) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (pathname === "/cadastro") {
+    if (unauthenticatedPages.includes(pathname)) {
       return;
     }
   }, [user, navigate, pathname]);
