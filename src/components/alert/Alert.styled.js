@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AlertContent = styled.div`
+const AlertStyled = styled.div`
   position: fixed;
   bottom: 4.5rem;
   width: 90%;
@@ -25,3 +25,5 @@ export const AlertContent = styled.div`
     color: ${({ theme }) => theme.colors.secondary};
   }
 `;
+
+export default AlertStyled;

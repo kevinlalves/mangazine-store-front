@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { signIn } from "../../../services/mangazine-store-api";
-import { ButtonStyled } from "../../../styles/Button.styled";
+import ButtonStyled from "../../../styles/Button.styled";
 import FormStyled from "../../../styles/Form.styled";
-import { InputStyled } from "../../../styles/Input.styled";
+import InputStyled from "../../../styles/Input.styled";
 import validateSchema from "../../../utils/functions/validateSchema";
 import { useAuth } from "../../../providers/AuthProvider";
 import signInSchema from "../../../schemas/signIn";

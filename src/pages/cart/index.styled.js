@@ -1,16 +1,17 @@
 import styled from "styled-components";
-import { IconStyled } from "../../styles/Icon.styled";
+import IconStyled from "../../styles/Icon.styled";
 
-export const CartContainer = styled.div`
+export const CartStyled = styled.div`
   width: 100%;
   position: absolute;
   height: 100vh;
   top: 0;
   right: ${({ active }) => (active ? "0" : "-100%")};
-  z-index: 2;
+  z-index: 101;
   background-color: ${({ theme }) => theme.colors.main};
   transition: 300ms linear;
 `;
+
 export const Title = styled.div`
   position: relative;
   font-size: 30px;
@@ -23,6 +24,7 @@ export const Title = styled.div`
     font-size: 25px;
   }
 `;
+
 export const CloseButton = styled(IconStyled)`
   position: absolute;
   top: 0.5rem;

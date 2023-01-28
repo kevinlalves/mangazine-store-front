@@ -1,13 +1,14 @@
-import { CartContainer, CloseButton, Title } from "./Index.styled";
+import { CartStyled, CloseButton, Title } from "./index.styled";
 import { BsCartFill } from "react-icons/bs";
 import { RiCloseLine } from "react-icons/ri";
-import useMenu from "../../utils/hooks/useMenu";
 import activateMenuButton from "../../utils/functions/activateMenuButton";
+import { useMenu } from "../../providers/MenuProvider";
+
 const CartPage = () => {
   const { statusButton, setStatusButton } = useMenu();
 
   return (
-    <CartContainer active={statusButton.cart}>
+    <CartStyled active={statusButton.cart}>
       <Title>
         <BsCartFill /> <span>Meu carrinho</span>{" "}
         <CloseButton
@@ -16,7 +17,8 @@ const CartPage = () => {
           <RiCloseLine />
         </CloseButton>
       </Title>
-    </CartContainer>
+    </CartStyled>
   );
 };
+
 export default CartPage;

@@ -9,7 +9,7 @@ import SignUpPage from "./pages/sign-up";
 import ProductPage from "./pages/product";
 import CheckoutPage from "./pages/checkout";
 import CartPage from "./pages/cart";
-import { MenuProvider } from "./providers/MenuProvider";
+import MenuProvider from "./providers/MenuProvider";
 import AuthProvider from "./providers/AuthProvider";
 
 export default function App() {

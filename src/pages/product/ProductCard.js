@@ -1,4 +1,4 @@
-import { ButtonStyled } from "../../styles/Button.styled";
+import ButtonStyled from "../../styles/Button.styled";
 import { ProductCardStyle, ContB, Cont, ContC } from "./ProductCard.styled";
 import RatingStars from "../../styles/Stars.styled";
 const ProductCard = ({ handleShowAlert }) => {

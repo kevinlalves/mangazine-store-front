@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonStyled = styled.button`
+const ButtonStyled = styled.button`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   background-color: ${({ theme }) => theme.colors.button};
@@ -14,3 +14,5 @@ export const ButtonStyled = styled.button`
     opacity: 0.95;
   }
 `;
+
+export default ButtonStyled;

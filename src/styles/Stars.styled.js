@@ -9,4 +9,5 @@ const RatingStars = (props) => {
         edit={false}
         />)
 }
+
 export default RatingStars;

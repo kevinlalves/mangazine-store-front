@@ -7,10 +7,11 @@ import {
 } from "react-icons/hi2";
 import { RiFileListLine, RiFileListFill } from "react-icons/ri";
 import { BsCartFill, BsCart } from "react-icons/bs";
-import { IconStyled } from "../../styles/Icon.styled";
-import { FooterStyled } from "./Footer.styled";
-import useMenu from "../../utils/hooks/useMenu";
+import IconStyled from "../../styles/Icon.styled";
+import FooterStyled from "./Footer.styled";
 import activateMenuButton from "../../utils/functions/activateMenuButton";
+import { useMenu } from "../../providers/MenuProvider";
+
 const Footer = () => {
   const { statusButton, setStatusButton } = useMenu();
   return (
@@ -48,4 +49,5 @@ const Footer = () => {
     </FooterStyled>
   );
 };
+
 export default Footer;
