@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const apiRequests = axios.create({
   baseURL: process.env.REACT_APP_API_URL
 });
@@ -23,3 +24,7 @@ export const getCurrentUser = (token) => (
 export const listProducts = ({ page, per }) => (
   apiRequests.get(`/products?page=${page}&per=${per}`)
 );
+
+export const getProducts = ({page, per}) => (
+  apiRequests.get(`/products?page=${page}&per=${per}`)
+)
