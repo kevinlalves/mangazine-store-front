@@ -11,4 +11,4 @@ const CloudOverlay = () => {
   );
 };
 
-export  default CloudOverlay;
+export default CloudOverlay;
