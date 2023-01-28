@@ -4,7 +4,6 @@ import Arrows from "../../components/arrows/Arrows";
 import { StyledHome } from "./Index.styled";
 import ProductCard from "./ProductCard";
 import useHome from "../../utils/hooks/useHome";
-import axios from "axios"
 import { getProducts } from  "../../services/mangazine-store-api"
 import per from "../../utils/constants/productsPer"
 import LoadingProducts from "../../components/loadingProducts/LoadingProducts";
@@ -19,7 +18,7 @@ const ProductPage = () => {
     const promise = getProducts(page, per)
     promise.then((e) => {setProducts(e.data)})
     promise.catch((e) => console.log(e))
-  }, [page])
+  }, [page, setProducts])
 
   return (
     <StyledHome>
