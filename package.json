@@ -14,9 +14,12 @@
     "styled-components": "^5.3.6",
     "joi":"^17.7.0"
   },
+  "devDependencies": {
+    "dotenv-cli": "^7.0.0"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "dotenv -e envs/development.env react-scripts start",
+    "build": "dotenv -e envs/production.env react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
