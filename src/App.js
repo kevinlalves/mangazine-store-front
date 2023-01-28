@@ -10,6 +10,7 @@ import ProductPage from "./pages/product";
 import CheckoutPage from "./pages/checkout";
 import CartPage from "./pages/cart";
 import { MenuProvider } from "./providers/MenuProvider";
+import { HomeProvider } from "./providers/HomeProvider";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <BrowserRouter>
         <UserProvider>
           <MenuProvider>
+            <HomeProvider>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/products/:id" element={<ProductPage />} />
@@ -25,6 +27,7 @@ export default function App() {
               <Route path="/sign-up" element={<SignUpPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
             </Routes>
+            </HomeProvider>
           </MenuProvider>
         </UserProvider>
       </BrowserRouter>
