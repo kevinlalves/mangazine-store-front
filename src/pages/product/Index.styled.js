@@ -7,4 +7,5 @@ export const StyledHome = styled.div`
   padding-block: 5rem;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 `;

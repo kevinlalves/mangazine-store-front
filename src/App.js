@@ -11,29 +11,25 @@ import CheckoutPage from "./pages/checkout";
 import CartPage from "./pages/cart";
 import MenuProvider from "./providers/MenuProvider";
 import AuthProvider from "./providers/AuthProvider";
-import { HomeProvider } from "./providers/HomeProvider";
-
 
 export default function App() {
   return (
     <ThemeProvider theme={{ colors, fonts }}>
       <BrowserRouter>
-        <UserProvider>
-          <MenuProvider>
-            <AuthProvider>
-              <HomeProvider>
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/products/:id" element={<ProductPage />} />
-                  <Route path="/cart" element={<CartPage />} />
-                  <Route path="/sign-in" element={<SignInPage />} />
-                  <Route path="/sign-up" element={<SignUpPage />} />
-                  <Route path="/checkout" element={<CheckoutPage />} />
-                </Routes>
-              </HomeProvider>
-            </AuthProvider>
-          </MenuProvider>
-        </UserProvider>
+        <MenuProvider>
+          <AuthProvider>
+            <UserProvider>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/products/:id" element={<ProductPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/sign-in" element={<SignInPage />} />
+                <Route path="/sign-up" element={<SignUpPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+              </Routes>
+            </UserProvider>
+          </AuthProvider>
+        </MenuProvider>
       </BrowserRouter>
     </ThemeProvider>
   );

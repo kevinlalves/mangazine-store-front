@@ -6,12 +6,13 @@ import InputStyled from "../../../styles/Input.styled";
 import validateSchema from "../../../utils/functions/validateSchema";
 import { useAuth } from "../../../providers/AuthProvider";
 import signInSchema from "../../../schemas/signIn";
+import { useNavigate } from "react-router";
 
 const Form = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setToken } = useAuth();
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,34 +22,38 @@ const Form = () => {
     }
 
     try {
-      const { token } = await signIn({ email, password });
-
-      setToken(token);
-    }
-    catch (error) {
+      const { data } = await signIn({ email, password });
+      console.log(data.token)
+      setToken(data.token);
+      navigate("/");
+    } catch (error) {
       window.alert(error.response?.data);
     }
-  }
+  };
 
   return (
     <FormStyled onSubmit={handleSubmit}>
       <InputStyled
         name="email"
         placeholder="E-mail"
+        type="email"
         value={email}
-        onChange={e => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
         height="60px"
         width="100%"
       />
       <InputStyled
         name="password"
         placeholder="Senha"
+        type="password"
         value={password}
-        onChange={e => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
         height="60px"
         width="100%"
       />
-      <ButtonStyled height="60px" width="100%" fontSize="1.5rem" >Entrar</ButtonStyled>
+      <ButtonStyled height="60px" width="100%" fontSize="1.5rem">
+        Entrar
+      </ButtonStyled>
     </FormStyled>
   );
 };

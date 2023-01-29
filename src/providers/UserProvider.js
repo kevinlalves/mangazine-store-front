@@ -10,7 +10,7 @@ const UserProviderContext = createContext({});
 const UserProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage(USER_STORAGE_KEY);
   const { token, setToken } = useAuth();
-
+  console.log(token)
   useEffect(() => {
     if (user) {
       return;
@@ -21,11 +21,10 @@ const UserProvider = ({ children }) => {
         const userData = await getCurrentUser(token);
 
         setUser(userData);
-      }
-      catch (error) {
+      } catch (error) {
         setToken({});
       }
-    }
+    };
 
     authenticateUser();
   }, [token, user, setToken, setUser]);

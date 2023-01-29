@@ -17,8 +17,6 @@ export const signUp = ({ name, email, password, address }) =>
 export const getCurrentUser = (token) =>
   apiRequests.get("/users", authorization(token));
 
-export const listProducts = ({ page, per }) =>
-  apiRequests.get(`/products?page=${page}&per=${per}`);
-
-export const getProducts = ({ page, per }) =>
-  apiRequests.get(`/products?page=${page}&per=${per}`);
+export const listProducts = ({ page, per }) => (
+  apiRequests.get(`/products?page=${page}&per=${per}`)
+);

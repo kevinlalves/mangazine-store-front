@@ -9,7 +9,7 @@ const ProductCard = ({ product, quantity }) => {
   const { name, image, price } = product;
   return (
     <ProductStyled>
-      <img src={image} />
+      <img src={image} alt={`Mangá`} />
       <div>
         <Title>{name}</Title>
         <div>

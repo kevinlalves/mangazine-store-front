@@ -25,8 +25,15 @@ height: 100px;
 padding-block:2px;
 h1{
     font-family: ${props => props.theme.fonts.overpass};
-    font-size: 20px;
+    font-size: 19px;
     color:#243763;
+    display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
+    max-height: 40px;
+    line-height: 20px;
   }
   h2{
     font-size: 22px;
@@ -42,6 +49,9 @@ height: 100%;
 width: 150px;
 padding-block: 13px;
 overflow: hidden;
+button{
+  z-index:1;
+}
 p{
   font-family: ${props => props.theme.fonts.overpass};
   font-size: 12px;
