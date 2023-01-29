@@ -10,6 +10,7 @@ button{
     padding-top: 5px;
     padding-inline: 3px;
     margin-inline: 8px;
+    z-index: 1;
 }
 button:disabled{
     opacity: 0.75;

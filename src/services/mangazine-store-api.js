@@ -24,7 +24,3 @@ export const getCurrentUser = (token) => (
 export const listProducts = ({ page, per }) => (
   apiRequests.get(`/products?page=${page}&per=${per}`)
 );
-
-export const getProducts = ({page, per}) => (
-  apiRequests.get(`/products?page=${page}&per=${per}`)
-)

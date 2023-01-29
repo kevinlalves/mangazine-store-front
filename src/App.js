@@ -11,7 +11,6 @@ import CheckoutPage from "./pages/checkout";
 import CartPage from "./pages/cart";
 import MenuProvider from "./providers/MenuProvider";
 import AuthProvider from "./providers/AuthProvider";
-import { HomeProvider } from "./providers/HomeProvider";
 
 
 export default function App() {
@@ -21,7 +20,7 @@ export default function App() {
         <UserProvider>
           <MenuProvider>
             <AuthProvider>
-              <HomeProvider>
+              
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/products/:id" element={<ProductPage />} />
@@ -30,7 +29,6 @@ export default function App() {
                   <Route path="/sign-up" element={<SignUpPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />
                 </Routes>
-              </HomeProvider>
             </AuthProvider>
           </MenuProvider>
         </UserProvider>
