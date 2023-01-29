@@ -3,9 +3,10 @@ import Alert from "../../components/alert/Alert";
 import Arrows from "../../components/arrows/Arrows";
 import { StyledHome } from "./Index.styled";
 import ProductCard from "./ProductCard";
-import { getProducts } from  "../../services/mangazine-store-api"
+import { listProducts } from  "../../services/mangazine-store-api"
 import per from "../../utils/constants/productsPer"
 import LoadingProducts from "../../components/loadingProducts/LoadingProducts";
+
 const ProductPage = () => {
   const [lastPage, setLastPage] = useState(0)
   const [page, setPage] = useState(1)
@@ -16,17 +17,18 @@ const ProductPage = () => {
     setTimeout(() => setShowAlert(false), 1500);
   };
   useEffect(() => {
-    const promise = getProducts(page, per)
+    const promise = listProducts({page, per})
     promise.then((e) => {
       setProducts(e.data.productsList)
-      setLastPage(Math.floor(e.data.totalLength-1/per)+1)
+      setLastPage(Math.floor((e.data.totalLength-1)/per)+1)
+      
     })
     promise.catch((e) => console.log(e))
-  }, [page, setProducts])
+  }, [page])
 
   return (
     <StyledHome>
-      {products.length===0 ? <LoadingProducts/> : products.map((i) => <ProductCard handleShowAlert={handleShowAlert} name={i.name} image={i.image} rating={i.rating} price={i.price}/>)}
+      {products.length===0 ? <LoadingProducts/> : products.map((i) => <ProductCard handleShowAlert={handleShowAlert} key={i._id} name={i.name} image={i.image} rating={i.rating} price={i.price}/>)}
       {products.length!==0 ? <Arrows page={page} setPage={setPage} lastPage={lastPage}/> : ''}
       {showAlert && (
         <Alert
@@ -34,6 +36,7 @@ const ProductPage = () => {
           success={true}
         />
       )}
+      
     </StyledHome>
   );
 };
