@@ -4,7 +4,7 @@ import IconStyled from "../../styles/Icon.styled";
 export const CartStyled = styled.div`
   width: 100%;
   position: absolute;
-  height: 100vh;
+  height: calc(100vh - 4rem);
   top: 0;
   right: ${({ active }) => (active ? "0" : "-100%")};
   z-index: 101;

@@ -8,12 +8,12 @@ const CloudOverlayStyled = styled.div`
     position: fixed;
   }
   img:nth-child(1) {
-    top: 0;
+    top: 0px;
     left: 0;
     width: 370px;
   }
   img:nth-child(2) {
-    bottom: 0;
+    bottom: 44px;
     right: 0;
     width: 370px;
   }
