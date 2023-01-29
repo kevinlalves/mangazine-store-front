@@ -62,6 +62,7 @@ const SignUpForm = () => {
       <InputStyled
         name="password"
         placeholder="Senha"
+        type="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
         height="60px"
@@ -70,6 +71,7 @@ const SignUpForm = () => {
       <InputStyled
         name="password-confirmation"
         placeholder="Confirme a senha"
+        type="password"
         value={passwordConfirmation}
         onChange={e => setPasswordConfirmation(e.target.value)}
         height="60px"

@@ -43,6 +43,7 @@ const SignInForm = () => {
       <InputStyled
         name="password"
         placeholder="Senha"
+        type="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
         height="60px"
