@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Form from "./components/Form";
+import SignInForm from "./components/Form";
 import logo from "../../assets/logo-mangazine-header.png";
 import SignInStyled from "./index.styled";
 import CloudOverlay from "../../components/cloudOverlay/CloudOverlay";
