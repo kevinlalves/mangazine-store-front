@@ -10,7 +10,6 @@ const UserProviderContext = createContext({});
 const UserProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage(USER_STORAGE_KEY);
   const { token, setToken } = useAuth();
-  console.log(token)
   useEffect(() => {
     if (user) {
       return;
@@ -19,12 +18,12 @@ const UserProvider = ({ children }) => {
     const authenticateUser = async () => {
       try {
         const userData = await getCurrentUser(token);
-
+        console.log(token)
         setUser(userData);
       } catch (error) {
         setToken({});
       }
-    };
+    }
 
     authenticateUser();
   }, [token, user, setToken, setUser]);

@@ -7,7 +7,7 @@ const FormStyled = styled.form`
   * {
     margin-bottom: 12px;
   }
-  width: 86%;
+  width: 84%;
 `;
 
 export default FormStyled;

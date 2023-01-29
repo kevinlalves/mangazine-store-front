@@ -8,7 +8,7 @@ import { useAuth } from "../../../providers/AuthProvider";
 import signInSchema from "../../../schemas/signIn";
 import { useNavigate } from "react-router";
 
-const Form = () => {
+const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setToken } = useAuth();
@@ -36,7 +36,6 @@ const Form = () => {
       <InputStyled
         name="email"
         placeholder="E-mail"
-        type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         height="60px"
@@ -58,4 +57,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default SignInForm;

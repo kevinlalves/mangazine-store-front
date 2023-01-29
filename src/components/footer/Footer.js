@@ -14,13 +14,16 @@ import { useMenu } from "../../providers/MenuProvider";
 
 const Footer = () => {
   const { statusButton, setStatusButton } = useMenu();
+
   return (
     <FooterStyled>
       <IconStyled
         status={statusButton.user}
         onClick={() => setStatusButton(activateMenuButton("user"))}
       >
-        {statusButton.user ? <HiUser /> : <HiOutlineUser />}
+        <Link to="/sign-in">
+          {statusButton.user ? <HiUser /> : <HiOutlineUser />}
+        </Link>
       </IconStyled>
       <IconStyled
         status={statusButton.home}
@@ -38,13 +41,17 @@ const Footer = () => {
         status={statusButton.orders}
         onClick={() => setStatusButton(activateMenuButton("orders"))}
       >
-        {statusButton.orders ? <RiFileListFill /> : <RiFileListLine />}
+        <Link to="/checkout">
+          {statusButton.orders ? <RiFileListFill /> : <RiFileListLine />}
+        </Link>
       </IconStyled>
       <IconStyled
         status={statusButton.cart}
         onClick={() => setStatusButton(activateMenuButton("cart"))}
       >
-        {statusButton.cart ? <BsCartFill /> : <BsCart />}
+        <Link to="/cart">
+          {statusButton.cart ? <BsCartFill /> : <BsCart />}
+        </Link>
       </IconStyled>
     </FooterStyled>
   );
