@@ -11,6 +11,7 @@ import CheckoutPage from "./pages/checkout";
 import CartPage from "./pages/cart";
 import MenuProvider from "./providers/MenuProvider";
 import AuthProvider from "./providers/AuthProvider";
+import CartProvider from "./providers/CartProvider";
 
 export default function App() {
   return (
@@ -19,14 +20,16 @@ export default function App() {
         <MenuProvider>
           <AuthProvider>
             <UserProvider>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/products/:id" element={<ProductPage />} />
-                <Route path="/cart" element={<CartPage />} />
-                <Route path="/sign-in" element={<SignInPage />} />
-                <Route path="/sign-up" element={<SignUpPage />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
-              </Routes>
+              <CartProvider>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/products/:id" element={<ProductPage />} />
+                  <Route path="/cart" element={<CartPage />} />
+                  <Route path="/sign-in" element={<SignInPage />} />
+                  <Route path="/sign-up" element={<SignUpPage />} />
+                  <Route path="/checkout" element={<CheckoutPage />} />
+                </Routes>
+              </CartProvider>
             </UserProvider>
           </AuthProvider>
         </MenuProvider>

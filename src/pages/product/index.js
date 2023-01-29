@@ -34,6 +34,7 @@ const ProductPage = () => {
           <ProductCard
             handleShowAlert={handleShowAlert}
             key={i._id}
+            id={i._id}
             name={i.name}
             image={i.image}
             rating={i.rating}

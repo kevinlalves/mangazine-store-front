@@ -2,19 +2,42 @@ import ButtonStyled from "../../styles/Button.styled";
 import { ProductCardStyle, ContB, Cont, ContC } from "./ProductCard.styled";
 import RatingStars from "../../styles/Stars.styled";
 import { useNavigate } from "react-router";
-import {useUser} from "../../providers/UserProvider"
-const ProductCard = ({ handleShowAlert, name, image, price, rating }) => {
-  const { user } = useUser();
+import { useCart } from "../../providers/CartProvider";
+import { updateUser } from "../../services/mangazine-store-api";
+import { useAuth } from "../../providers/AuthProvider";
+const ProductCard = ({ handleShowAlert,id, name, image, price, rating }) => {
+  const { token } = useAuth();
+  const { localCart, setLocalCart } = useCart();
   const navigate = useNavigate();
   const handleAddToCart = async () => {
-    console.log(user)
-    if (!user) {
+    if (!token) {
       handleShowAlert({
         isShow: true,
         description: "Você deve logar para acessar o carrinho!",
         success: false,
       });
       setTimeout(navigate, 1500, "/sign-in");
+      return;
+    }
+    try {
+      const isExistProduct = localCart.cart.some(
+        (c) => c.product.name === name
+      );
+      let newCartAdd = [];
+      if (!isExistProduct) {
+        newCartAdd = [
+          ...localCart.cart,
+          { product: { id, name, image, price }, quantity: 1 },
+        ];
+      } else {
+        newCartAdd = localCart.cart.map((c) =>
+          c.product.name === name ? { ...c, quantity: c.quantity + 1 } : c
+        );
+      }
+      await updateUser({ cart: newCartAdd }, token);
+      setLocalCart({ cart: newCartAdd });
+    } catch (error) {
+      window.alert(error.response?.data);
     }
   };
   return (

@@ -23,7 +23,6 @@ const SignInForm = () => {
 
     try {
       const { data } = await signIn({ email, password });
-      console.log(data.token)
       setToken(data.token);
       navigate("/");
     } catch (error) {
