@@ -9,7 +9,7 @@ const SignInPage = () => {
     <>
       <SignInStyled>
         <img src={logo} alt="mangazine logo" />
-        <Form />
+        <SignInForm />
         <p><Link to="/sign-up">Não possui cadastro? Cadastre-se já!</Link></p>
       </SignInStyled>
       <CloudOverlay />
