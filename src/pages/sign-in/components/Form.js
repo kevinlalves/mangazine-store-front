@@ -7,7 +7,7 @@ import validateSchema from "../../../utils/functions/validateSchema";
 import { useAuth } from "../../../providers/AuthProvider";
 import signInSchema from "../../../schemas/signIn";
 
-const Form = () => {
+const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setToken } = useAuth();
@@ -43,6 +43,7 @@ const Form = () => {
       <InputStyled
         name="password"
         placeholder="Senha"
+        type="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
         height="60px"
@@ -53,4 +54,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default SignInForm;
