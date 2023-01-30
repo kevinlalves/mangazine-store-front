@@ -27,15 +27,16 @@ export const Data = styled.div`
   padding: 0.5rem;
   height: ${({ height }) => height};
   margin-bottom: 0.5rem;
-  section{
+  section {
     height: 85%;
     overflow-y: auto;
   }
 `;
 export const UserData = styled.div`
-font-size: 1.3rem;
-margin-bottom: .5rem;
-word-wrap: break-word;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+  color: ${({ theme }) => theme.colors.main};
 `;
 export const Total = styled.div`
   font-size: 1.8rem;
@@ -57,7 +58,8 @@ export const Item = styled.div`
     width: 10rem;
     text-align: center;
   }
-  p:not(:nth-child(1)), div:not(:nth-child(1)){
+  p:not(:nth-child(1)),
+  div:not(:nth-child(1)) {
     flex-basis: 2rem;
     text-align: center;
   }
@@ -73,5 +75,21 @@ export const Name = styled.p`
   text-overflow: ellipsis;
   overflow: hidden;
   height: 100%;
-  padding-top:.5rem;
+  padding-top: 0.5rem;
+`;
+export const Payment = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  width: 100%;
+  align-items: center;
+  height: 3rem;
+  color: ${({theme})=> theme.colors.main}
+`;
+export const Select = styled.select`
+  width: 4rem;
+  font-size: 1rem;
+  background-color: ${({theme})=>theme.colors.button};
+  color: ${({theme})=>theme.colors.secondary};
+  border-radius: 0.5rem;
 `;

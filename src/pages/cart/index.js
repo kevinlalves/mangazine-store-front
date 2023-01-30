@@ -16,6 +16,7 @@ import ButtonStyled from "../../styles/Button.styled";
 import ProductCard from "./components/ProductCard";
 import { calculateTotalPrice } from "../../utils/functions/calculateTotalPrice";
 import { useUser } from "../../providers/UserProvider";
+import { useEffect } from "react";
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,12 @@ const CartPage = () => {
     setStatusButton(activateMenuButton("home"));
     navigate("/");
   };
+  useEffect(() => {
+    if (!user && statusButton.cart === true) {
+      setStatusButton(activateMenuButton("user"))
+      navigate("/sign-in");
+    }
+  }, [statusButton, user]);
   return (
     <>
       <CartStyled active={statusButton.cart}>
@@ -37,8 +44,8 @@ const CartPage = () => {
                 <RiCloseLine />
               </CloseButton>
             </Title>
-            <ListStyled isLoading={!user.cart.length}>
-              {user.cart.length ? (
+            <ListStyled isLoading={!user ? "" : !user.cart.length}>
+              {user && user.cart.length ? (
                 user.cart.map(({ product, quantity }) => (
                   <ProductCard
                     key={product._id}
@@ -51,7 +58,7 @@ const CartPage = () => {
               )}
             </ListStyled>
             <CartFooter>
-              {user.cart.length ? (
+              {user && user.cart.length ? (
                 <>
                   <Total>
                     <span>Total</span>

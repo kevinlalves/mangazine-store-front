@@ -23,10 +23,10 @@ export const listProducts = ({ page, per }) =>
 export const updateUser = (updatedUserData, token) =>
   apiRequests.put("/users", updatedUserData, authorization(token));
 
-export const setOrder = ({ user, total }, token) =>
+export const setOrder = (order, token) =>
   apiRequests.post(
     "/checkout",
-    { user, total },
+    order,
     authorization(token)
   );
 
