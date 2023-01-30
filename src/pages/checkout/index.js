@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingProducts from "../../components/loadingProducts/LoadingProducts";
 import { useAuth } from "../../providers/AuthProvider";
-import { setOrder, updateUser } from "../../services/mangazine-store-api";
+import { setOrder } from "../../services/mangazine-store-api";
 import SuccessPurchasePage from "./components/successPurchase";
 import CheckoutData from "./components/CheckoutData";
 
@@ -16,19 +16,23 @@ const CheckoutPage = () => {
   const { token } = useAuth();
   const [isFinishedCheckout, setIsFinishedCheckout] = useState(false);
   const totalPrice = calculateTotalPrice(user.cart);
+  const [selectedPayment, setSelectedPayment] = useState("pix");
+
   useEffect(() => {
     if (!user || !user.cart.length) {
       navigate("/");
     }
   }, [user, user.cart, navigate]);
+
   const handleBuyButtonClick = async () => {
     const order = {
-      user,
-      total: Number(totalPrice.replace(",", ".")),
+      address: user.address,
+      cart: user.cart,
+      paymentMethod: selectedPayment,
     };
+    console.log(order)
     try {
       await setOrder(order, token);
-      updateUser({...user, cart: []}, token);
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
@@ -38,15 +42,24 @@ const CheckoutPage = () => {
       window.alert(error.response?.data);
     }
   };
-
+  if (isLoading) {
+    return (
+      <CheckoutStyled>
+        <LoadingProducts color={`main`} />
+      </CheckoutStyled>
+    );
+  }
   return (
     <CheckoutStyled>
-      {isLoading && !isFinishedCheckout ? (
-        <LoadingProducts color={`main`} />
-      ) : isFinishedCheckout ? (
+      {isFinishedCheckout ? (
         <SuccessPurchasePage />
       ) : (
-        <CheckoutData handleBuyButtonClick={handleBuyButtonClick} totalPrice={totalPrice} />
+        <CheckoutData
+          handleBuyButtonClick={handleBuyButtonClick}
+          setSelectedPayment={setSelectedPayment}
+          selectedPayment={selectedPayment}
+          totalPrice={totalPrice}
+        />
       )}
     </CheckoutStyled>
   );
