@@ -4,15 +4,18 @@ import logo from "../../../../assets/logo-mangazine-header.png";
 import { useUser } from "../../../../providers/UserProvider";
 import { SuccessStyled, Title, Subtitle, Avatar } from "./index.styled";
 import avatar from "../../../../assets/success-avatar.png";
-
+import { useMenu } from "../../../../providers/MenuProvider";
+import activateMenuButton from "../../../../utils/functions/activateMenuButton"
 const SuccessPurchasePage = () => {
   const { user, setUser } = useUser();
+  const {setStatusButton} = useMenu();
   const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       setUser({ ...user, cart: [] });
+      setStatusButton(activateMenuButton("home"));
     }, 2000);
-  }, [setUser, user, navigate]);
+  }, [setUser, user, navigate, setStatusButton]);
 
   return (
     <SuccessStyled>

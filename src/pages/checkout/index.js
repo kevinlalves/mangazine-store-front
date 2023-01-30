@@ -8,6 +8,7 @@ import { useAuth } from "../../providers/AuthProvider";
 import { setOrder, updateUser } from "../../services/mangazine-store-api";
 import SuccessPurchasePage from "./components/successPurchase";
 import CheckoutData from "./components/CheckoutData";
+
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { user } = useUser();

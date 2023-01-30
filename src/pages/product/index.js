@@ -15,10 +15,11 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const { statusButton } = useMenu();
   const [showAlert, setShowAlert] = useState(false);
+
   const divRef = useRef();
-  const handleShowAlert = () => {
-    setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 1500);
+  const handleShowAlert = (parameters) => {
+    setShowAlert(parameters);
+    setTimeout(() => setShowAlert({ ...parameters, isShow: false }), 1500);
   };
   useEffect(() => {
     const promise = listProducts({ page, per });
@@ -33,7 +34,7 @@ const ProductPage = () => {
   return (
     <StyledHome ref={divRef}>
       {products.length === 0 ? (
-        <LoadingProducts />
+        <LoadingProducts color={`main`}/>
       ) : (
         products.map((i) => (
           <ProductCard
