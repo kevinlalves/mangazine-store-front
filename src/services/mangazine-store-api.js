@@ -21,6 +21,10 @@ export const listProducts = ({ page, per }) => (
   apiRequests.get(`/products?page=${page}&per=${per}`)
 );
 
+export const getSingleProduct = ({ id }) => (
+  apiRequests.get(`/products/${id}`)
+);
+
 export const updateUser = (updatedUserData, token) =>{
   apiRequests.put("/users", updatedUserData , authorization(token));
 }
