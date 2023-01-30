@@ -45,6 +45,7 @@ const ProductPage = () => {
             image={i.image}
             rating={i.rating}
             price={i.price}
+            reviewCount={i.reviewCount}
             product={i}
           />
         ))

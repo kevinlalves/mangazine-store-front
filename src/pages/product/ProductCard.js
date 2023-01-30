@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { updateUser } from "../../services/mangazine-store-api";
 import { useAuth } from "../../providers/AuthProvider";
 import { handleAddItem } from "../../utils/functions/handleAddItem";
+import { Link } from "react-router-dom";
 import { useUser } from "../../providers/UserProvider";
 const ProductCard = ({
   handleShowAlert,
@@ -13,6 +14,7 @@ const ProductCard = ({
   price,
   rating,
   product,
+  reviewCount
 }) => {
   const { token } = useAuth();
   const { user, setUser } = useUser();
@@ -43,11 +45,11 @@ const ProductCard = ({
           <h1>{name}</h1>
           <ContC>
             <RatingStars valor={rating} size={24} />
-            <h3>(2)</h3>
+            <h3>({reviewCount})</h3>
           </ContC>
           <h2>R$ {price ? price.toFixed(2).replace(".", ",") : ""}</h2>
         </Cont>
-        <p>Mais detalhes</p>
+        <Link to={`products/${id}`}>Mais detalhes</Link>
         <ButtonStyled
           onClick={() => handleAddToCart()}
           width={"100%"}

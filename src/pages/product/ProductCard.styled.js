@@ -52,7 +52,7 @@ overflow: hidden;
 button{
   z-index:1;
 }
-p{
+a{
   font-family: ${props => props.theme.fonts.overpass};
   font-size: 12px;
   color:#243763;
