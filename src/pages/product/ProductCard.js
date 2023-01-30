@@ -5,7 +5,8 @@ import { useNavigate } from "react-router";
 import { useCart } from "../../providers/CartProvider";
 import { updateUser } from "../../services/mangazine-store-api";
 import { useAuth } from "../../providers/AuthProvider";
-const ProductCard = ({ handleShowAlert,id, name, image, price, rating }) => {
+import { handleAddItem } from "../../utils/functions/handleAddItem";
+const ProductCard = ({ handleShowAlert, id, name, image, price, rating }) => {
   const { token } = useAuth();
   const { localCart, setLocalCart } = useCart();
   const navigate = useNavigate();
@@ -20,24 +21,11 @@ const ProductCard = ({ handleShowAlert,id, name, image, price, rating }) => {
       return;
     }
     try {
-      const isExistProduct = localCart.cart.some(
-        (c) => c.product.name === name
-      );
-      let newCartAdd = [];
-      if (!isExistProduct) {
-        newCartAdd = [
-          ...localCart.cart,
-          { product: { id, name, image, price }, quantity: 1 },
-        ];
-      } else {
-        newCartAdd = localCart.cart.map((c) =>
-          c.product.name === name ? { ...c, quantity: c.quantity + 1 } : c
-        );
-      }
+      const newCartAdd = handleAddItem(localCart, { id, name, image, price });
       await updateUser({ cart: newCartAdd }, token);
-      setLocalCart({ cart: newCartAdd });
+      setLocalCart(newCartAdd);
     } catch (error) {
-      window.alert(error.response?.data);
+      window.alert("deu ruim");
     }
   };
   return (

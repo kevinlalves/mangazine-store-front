@@ -11,20 +11,21 @@ import { RiCloseLine } from "react-icons/ri";
 import activateMenuButton from "../../utils/functions/activateMenuButton";
 import { useMenu } from "../../providers/MenuProvider";
 import Footer from "../../components/footer/Footer";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ButtonStyled from "../../styles/Button.styled";
 import ProductCard from "./components/ProductCard";
-import { useState } from "react";
 import LoadingProducts from "../../components/loadingProducts/LoadingProducts";
+import { useCart } from "../../providers/CartProvider";
+import { calculateTotalPrice } from "../../utils/functions/calculateTotalPrice";
 
 const CartPage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { localCart, setLocalCart } = useCart();
   const { statusButton, setStatusButton } = useMenu();
-  const [cart, setCart] = useState(null);
-  const handleCloseButtonClick = () =>{
+  const handleCloseButtonClick = () => {
     setStatusButton(activateMenuButton("home"));
-    navigate("/")
-  }
+    navigate("/");
+  };
   return (
     <>
       <CartStyled active={statusButton.cart}>
@@ -33,15 +34,13 @@ const CartPage = () => {
             {" "}
             <Title>
               <BsCartFill /> <span>Meu carrinho</span>{" "}
-              <CloseButton
-                onClick={() => handleCloseButtonClick()}
-              >
+              <CloseButton onClick={() => handleCloseButtonClick()}>
                 <RiCloseLine />
               </CloseButton>
             </Title>
-            <ListStyled isLoading={!cart}>
-              {cart ? (
-                cart.map(({ product, quantity }) => (
+            <ListStyled isLoading={!localCart.length}>
+              {localCart.length ? (
+                localCart.map(({ product, quantity }) => (
                   <ProductCard
                     key={product._id}
                     product={product}
@@ -49,17 +48,27 @@ const CartPage = () => {
                   />
                 ))
               ) : (
-                <LoadingProducts color={`secondary`} />
+                <p>Carrinho vazio :(</p>
               )}
             </ListStyled>
             <CartFooter>
-              <Total>
-                <span>Total</span>
-                <span>R$ {"21,90"}</span>
-              </Total>
-              <ButtonStyled width={"100%"} height="2.8rem" fontSize={"1.5rem"}>
-                Finalizar compra
-              </ButtonStyled>
+              {localCart.length ? (
+                <>
+                  <Total>
+                    <span>Total</span>
+                    <span>R$ {calculateTotalPrice(localCart)}</span>
+                  </Total>
+                  <ButtonStyled
+                    width={"100%"}
+                    height="2.8rem"
+                    fontSize={"1.5rem"}
+                  >
+                    Finalizar compra
+                  </ButtonStyled>
+                </>
+              ) : (
+                ""
+              )}
             </CartFooter>
           </>
         )}

@@ -6,11 +6,14 @@ import ProductCard from "./ProductCard";
 import { listProducts } from "../../services/mangazine-store-api";
 import per from "../../utils/constants/productsPer";
 import LoadingProducts from "../../components/loadingProducts/LoadingProducts";
+import { useMenu } from "../../providers/MenuProvider";
+import CartPage from "../cart";
 
 const ProductPage = () => {
   const [lastPage, setLastPage] = useState(0);
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
+  const {statusButton} = useMenu()
   const [showAlert, setShowAlert] = useState(false);
   const handleShowAlert = (parameters) => {
     setShowAlert(parameters);
@@ -53,6 +56,7 @@ const ProductPage = () => {
           success={showAlert.success}
         />
       )}
+      {statusButton && <CartPage/>}
     </StyledHome>
   );
 };

@@ -31,7 +31,7 @@ const ProductCard = ({ product, quantity }) => {
             </ButtonStyled>
           </QuantityStyled>
           <PriceStyled>
-            <span>R$ {price}</span>
+            <span>R$ {price.toFixed(2).replace(".",",")}</span>
           </PriceStyled>
         </div>
       </div>

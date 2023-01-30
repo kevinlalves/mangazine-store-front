@@ -14,7 +14,6 @@ import { useMenu } from "../../providers/MenuProvider";
 
 const Footer = () => {
   const { statusButton, setStatusButton } = useMenu();
-
   return (
     <FooterStyled>
       <IconStyled
@@ -49,9 +48,7 @@ const Footer = () => {
         status={statusButton.cart}
         onClick={() => setStatusButton(activateMenuButton("cart"))}
       >
-        <Link to="/cart">
-          {statusButton.cart ? <BsCartFill /> : <BsCart />}
-        </Link>
+        {statusButton.cart ? <BsCartFill /> : <BsCart />}
       </IconStyled>
     </FooterStyled>
   );
