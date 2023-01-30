@@ -11,7 +11,7 @@ import AuthProvider from "./providers/AuthProvider";
 import OrdersPage from "./pages/orders";
 import CheckoutPage from "./pages/checkout";
 import SingleProductPage from "./pages/product/SingleProductPage";
-import CartProvider from "./providers/CartProvider";
+
 export default function App() {
   return (
     <ThemeProvider theme={{ colors, fonts }}>
@@ -19,16 +19,14 @@ export default function App() {
         <MenuProvider>
           <AuthProvider>
             <UserProvider>
-              <CartProvider>
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/products/:id" element={<SingleProductPage />} />
-                  <Route path="/sign-in" element={<SignInPage />} />
-                  <Route path="/sign-up" element={<SignUpPage />} />
-                  <Route path="/checkout" element={<CheckoutPage />} />
-                  <Route path="/orders" element={<OrdersPage />} />
-                </Routes>
-              </CartProvider>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/products/:id" element={<SingleProductPage />} />
+                <Route path="/sign-in" element={<SignInPage />} />
+                <Route path="/sign-up" element={<SignUpPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/orders" element={<OrdersPage />} />
+              </Routes>
             </UserProvider>
           </AuthProvider>
         </MenuProvider>
