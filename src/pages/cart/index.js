@@ -30,6 +30,7 @@ const CartPage = () => {
     if (!user && statusButton.cart === true) {
       setStatusButton(activateMenuButton("user"))
       navigate("/sign-in");
+      return;
     }
   }, [statusButton, user]);
   return (
