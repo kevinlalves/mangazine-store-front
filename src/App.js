@@ -7,10 +7,11 @@ import HomePage from "./pages";
 import SignInPage from "./pages/sign-in";
 import SignUpPage from "./pages/sign-up";
 import ProductPage from "./pages/product";
-import CheckoutPage from "./pages/checkout";
 import MenuProvider from "./providers/MenuProvider";
 import AuthProvider from "./providers/AuthProvider";
 import CartProvider from "./providers/CartProvider";
+import OrdersPage from "./pages/orders";
+import CheckoutPage from "./pages/checkout";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
                   <Route path="/sign-in" element={<SignInPage />} />
                   <Route path="/sign-up" element={<SignUpPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />
+                  <Route path="/orders" element={<OrdersPage />} />
                 </Routes>
               </CartProvider>
             </UserProvider>

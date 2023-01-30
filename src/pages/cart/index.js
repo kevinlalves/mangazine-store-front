@@ -11,10 +11,9 @@ import { RiCloseLine } from "react-icons/ri";
 import activateMenuButton from "../../utils/functions/activateMenuButton";
 import { useMenu } from "../../providers/MenuProvider";
 import Footer from "../../components/footer/Footer";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonStyled from "../../styles/Button.styled";
 import ProductCard from "./components/ProductCard";
-import LoadingProducts from "../../components/loadingProducts/LoadingProducts";
 import { useCart } from "../../providers/CartProvider";
 import { calculateTotalPrice } from "../../utils/functions/calculateTotalPrice";
 
@@ -63,7 +62,7 @@ const CartPage = () => {
                     height="2.8rem"
                     fontSize={"1.5rem"}
                   >
-                    Finalizar compra
+                    <Link to="/checkout">Finalizar compra</Link>
                   </ButtonStyled>
                 </>
               ) : (

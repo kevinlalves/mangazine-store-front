@@ -40,7 +40,7 @@ const Footer = () => {
         status={statusButton.orders}
         onClick={() => setStatusButton(activateMenuButton("orders"))}
       >
-        <Link to="/checkout">
+        <Link to="/orders">
           {statusButton.orders ? <RiFileListFill /> : <RiFileListLine />}
         </Link>
       </IconStyled>

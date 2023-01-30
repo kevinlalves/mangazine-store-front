@@ -41,6 +41,11 @@ export const ListStyled = styled.ul`
   height: 27.4rem;
   flex-grow: 1;
   overflow-y: auto;
+  &>p{
+    text-align: center;
+    font-size: 1.5rem;
+    color: ${({theme})=>theme.colors.secondary};
+  }
 `;
 export const Total = styled.div`
   display: flex;
