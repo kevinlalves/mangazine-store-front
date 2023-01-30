@@ -18,14 +18,14 @@ const UserProvider = ({ children }) => {
     const authenticateUser = async () => {
       try {
         const userData = await getCurrentUser(token);
-        setUser(userData);
+        setUser(userData.data);
       } catch (error) {
         setToken(null);
       }
-    }
+    };
 
     authenticateUser();
-  }, []);
+  }, [setToken, setUser, token]);
 
   return (
     <UserProviderContext.Provider value={{ user, setUser }}>

@@ -1,28 +1,52 @@
-import { CheckoutStyled, Data, Item, Name, Title, Total } from "./index.styled";
-import logo from "../../assets/logo-mangazine-header.png";
-import ButtonStyled from "../../styles/Button.styled";
+import { CheckoutStyled } from "./index.styled";
+import { useUser } from "../../providers/UserProvider";
+import { calculateTotalPrice } from "../../utils/functions/calculateTotalPrice";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import LoadingProducts from "../../components/loadingProducts/LoadingProducts";
+import { useAuth } from "../../providers/AuthProvider";
+import { setOrder, updateUser } from "../../services/mangazine-store-api";
+import SuccessPurchasePage from "./components/successPurchase";
+import CheckoutData from "./components/CheckoutData";
 const CheckoutPage = () => {
+  const navigate = useNavigate();
+  const { user } = useUser();
+  const [isLoading, setIsLoading] = useState(false);
+  const { token } = useAuth();
+  const [isFinishedCheckout, setIsFinishedCheckout] = useState(false);
+  const totalPrice = calculateTotalPrice(user.cart);
+  useEffect(() => {
+    if (!user || !user.cart.length) {
+      navigate("/");
+    }
+  }, [user, user.cart, navigate]);
+  const handleBuyButtonClick = async () => {
+    const order = {
+      user,
+      total: Number(totalPrice.replace(",", ".")),
+    };
+    try {
+      await setOrder(order, token);
+      updateUser({...user, cart: []}, token);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        setIsFinishedCheckout(true);
+      }, 1500);
+    } catch (error) {
+      window.alert(error.response?.data);
+    }
+  };
+
   return (
     <CheckoutStyled>
-      <img src={logo} alt={"logo"} />
-      <Title>Dados do comprador</Title>
-      <Data height={"8rem"}><div><span>Nome: {`oko`}</span></div><div><span>Endereço: {`jiji`}</span></div></Data>
-      <Title>Produtos</Title>
-      <Data height={"14rem"}>
-        <Item><div>Título</div><div>Quantidade</div><div>Preço</div></Item>
-        <Item><Name>Titutlo enorme que vai crashar tue sitenujhiuhuihiu</Name><p>10</p><p>23,90</p></Item>
-        <Item><Name>Titutlo enorme que vai crashar tue sitenujhiuhuihiu</Name><p>Quantidade</p><p>Preço</p></Item>
-        <Item><Name>Titutlo enorme que vai crashar tue sitenujhiuhuihiu</Name><p>Quantidade</p><p>Preço</p></Item>
-        <Item><Name>Titutlo enorme que vai crashar tue sitenujhiuhuihiu</Name><p>Quantidade</p><p>Preço</p></Item>
-        <Item><Name>Titutlo enorme que vai crashar tue sitenujhiuhuihiu</Name><p>Quantidade</p><p>Preço</p></Item>
-      </Data>
-      <Total>
-        <span>Total</span>
-        <span>R$ {"23,42"}</span>
-      </Total>
-      <ButtonStyled fontSize={"1.5rem"} color={`selected`} height={"3rem"} width={"100%"}>
-        Comprar
-      </ButtonStyled>
+      {isLoading && !isFinishedCheckout ? (
+        <LoadingProducts color={`main`} />
+      ) : isFinishedCheckout ? (
+        <SuccessPurchasePage />
+      ) : (
+        <CheckoutData handleBuyButtonClick={handleBuyButtonClick} totalPrice={totalPrice} />
+      )}
     </CheckoutStyled>
   );
 };

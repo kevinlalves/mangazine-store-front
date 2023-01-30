@@ -27,7 +27,15 @@ export const Data = styled.div`
   padding: 0.5rem;
   height: ${({ height }) => height};
   margin-bottom: 0.5rem;
-  overflow-y: auto;
+  section{
+    height: 85%;
+    overflow-y: auto;
+  }
+`;
+export const UserData = styled.div`
+font-size: 1.3rem;
+margin-bottom: .5rem;
+word-wrap: break-word;
 `;
 export const Total = styled.div`
   font-size: 1.8rem;
