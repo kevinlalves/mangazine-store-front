@@ -2,16 +2,23 @@ import ButtonStyled from "../../styles/Button.styled";
 import { ProductCardStyle, ContB, Cont, ContC } from "./ProductCard.styled";
 import RatingStars from "../../styles/Stars.styled";
 import { useNavigate } from "react-router";
-import { useCart } from "../../providers/CartProvider";
 import { updateUser } from "../../services/mangazine-store-api";
 import { useAuth } from "../../providers/AuthProvider";
 import { handleAddItem } from "../../utils/functions/handleAddItem";
-const ProductCard = ({ handleShowAlert, id, name, image, price, rating }) => {
+import { useUser } from "../../providers/UserProvider";
+const ProductCard = ({
+  handleShowAlert,
+  name,
+  image,
+  price,
+  rating,
+  product,
+}) => {
   const { token } = useAuth();
-  const { localCart, setLocalCart } = useCart();
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
   const handleAddToCart = async () => {
-    if (!token) {
+    if (!user) {
       handleShowAlert({
         isShow: true,
         description: "Você deve logar para acessar o carrinho!",
@@ -21,11 +28,11 @@ const ProductCard = ({ handleShowAlert, id, name, image, price, rating }) => {
       return;
     }
     try {
-      const newCartAdd = handleAddItem(localCart, { id, name, image, price });
-      await updateUser({ cart: newCartAdd }, token);
-      setLocalCart(newCartAdd);
+      const newCartAdd = handleAddItem(user.cart, product);
+      updateUser({ cart: newCartAdd }, token);
+      setUser({ ...user, cart: newCartAdd });
     } catch (error) {
-      window.alert("deu ruim");
+      window.alert(error.response?.data);
     }
   };
   return (

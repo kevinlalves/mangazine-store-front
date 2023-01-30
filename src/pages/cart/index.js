@@ -14,12 +14,12 @@ import Footer from "../../components/footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonStyled from "../../styles/Button.styled";
 import ProductCard from "./components/ProductCard";
-import { useCart } from "../../providers/CartProvider";
 import { calculateTotalPrice } from "../../utils/functions/calculateTotalPrice";
+import { useUser } from "../../providers/UserProvider";
 
 const CartPage = () => {
   const navigate = useNavigate();
-  const { localCart, setLocalCart } = useCart();
+  const { user } = useUser();
   const { statusButton, setStatusButton } = useMenu();
   const handleCloseButtonClick = () => {
     setStatusButton(activateMenuButton("home"));
@@ -37,9 +37,9 @@ const CartPage = () => {
                 <RiCloseLine />
               </CloseButton>
             </Title>
-            <ListStyled isLoading={!localCart.length}>
-              {localCart.length ? (
-                localCart.map(({ product, quantity }) => (
+            <ListStyled isLoading={!user.cart.length}>
+              {user.cart.length ? (
+                user.cart.map(({ product, quantity }) => (
                   <ProductCard
                     key={product._id}
                     product={product}
@@ -51,11 +51,11 @@ const CartPage = () => {
               )}
             </ListStyled>
             <CartFooter>
-              {localCart.length ? (
+              {user.cart.length ? (
                 <>
                   <Total>
                     <span>Total</span>
-                    <span>R$ {calculateTotalPrice(localCart)}</span>
+                    <span>R$ {calculateTotalPrice(user.cart)}</span>
                   </Total>
                   <ButtonStyled
                     width={"100%"}

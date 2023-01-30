@@ -9,7 +9,6 @@ import SignUpPage from "./pages/sign-up";
 import ProductPage from "./pages/product";
 import MenuProvider from "./providers/MenuProvider";
 import AuthProvider from "./providers/AuthProvider";
-import CartProvider from "./providers/CartProvider";
 import OrdersPage from "./pages/orders";
 import CheckoutPage from "./pages/checkout";
 
@@ -20,16 +19,14 @@ export default function App() {
         <MenuProvider>
           <AuthProvider>
             <UserProvider>
-              <CartProvider>
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/products/:id" element={<ProductPage />} />
-                  <Route path="/sign-in" element={<SignInPage />} />
-                  <Route path="/sign-up" element={<SignUpPage />} />
-                  <Route path="/checkout" element={<CheckoutPage />} />
-                  <Route path="/orders" element={<OrdersPage />} />
-                </Routes>
-              </CartProvider>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/products/:id" element={<ProductPage />} />
+                <Route path="/sign-in" element={<SignInPage />} />
+                <Route path="/sign-up" element={<SignUpPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/orders" element={<OrdersPage />} />
+              </Routes>
             </UserProvider>
           </AuthProvider>
         </MenuProvider>
