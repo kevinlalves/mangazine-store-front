@@ -29,3 +29,6 @@ export const setOrder = (order, token) =>
     order,
     authorization(token)
   );
+
+export const getSingleProduct = ({ id }) => (
+    apiRequests.get(`/products/${id}`));
