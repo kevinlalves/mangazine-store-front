@@ -7,6 +7,12 @@ const FormStyled = styled.form`
   * {
     margin-bottom: 12px;
   }
+  button{
+    z-index:1;
+  }
+  input{
+    z-index:1;
+  }
   width: 84%;
 `;
 
