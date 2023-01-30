@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 export const MenuProviderContext = createContext({});
 
-const MenuProvider = ({children}) => {
+const MenuProvider = ({ children }) => {
   const [statusButton, setStatusButton] = useState({
     user: false,
     home: true,

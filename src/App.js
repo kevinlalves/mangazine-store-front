@@ -9,7 +9,6 @@ import SignUpPage from "./pages/sign-up";
 import ProductPage from "./pages/product";
 import MenuProvider from "./providers/MenuProvider";
 import AuthProvider from "./providers/AuthProvider";
-import CartProvider from "./providers/CartProvider";
 import OrdersPage from "./pages/orders";
 import CheckoutPage from "./pages/checkout";
 import SingleProductPage from "./pages/product/SingleProductPage";
