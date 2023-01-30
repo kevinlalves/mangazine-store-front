@@ -6,13 +6,12 @@ import UserProvider from "./providers/UserProvider";
 import HomePage from "./pages";
 import SignInPage from "./pages/sign-in";
 import SignUpPage from "./pages/sign-up";
-import ProductPage from "./pages/product";
 import MenuProvider from "./providers/MenuProvider";
 import AuthProvider from "./providers/AuthProvider";
 import OrdersPage from "./pages/orders";
 import CheckoutPage from "./pages/checkout";
 import SingleProductPage from "./pages/product/SingleProductPage";
-
+import CartProvider from "./providers/CartProvider";
 export default function App() {
   return (
     <ThemeProvider theme={{ colors, fonts }}>

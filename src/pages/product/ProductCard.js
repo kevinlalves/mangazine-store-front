@@ -8,6 +8,7 @@ import { handleAddItem } from "../../utils/functions/handleAddItem";
 import { Link } from "react-router-dom";
 import { useUser } from "../../providers/UserProvider";
 const ProductCard = ({
+  id,
   handleShowAlert,
   name,
   image,

@@ -7,5 +7,5 @@ export const SingleProductPageStyled = styled.div`
   padding-block: 1.5rem;
   display: flex;
   flex-direction: column;
-
+  margin-bottom:30px;
 `;
