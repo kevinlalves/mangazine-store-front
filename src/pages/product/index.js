@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Alert from "../../components/alert/Alert";
 import Arrows from "../../components/arrows/Arrows";
 import { StyledHome } from "./Index.styled";
@@ -13,25 +13,27 @@ const ProductPage = () => {
   const [lastPage, setLastPage] = useState(0);
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
-  const {statusButton} = useMenu()
+  const { statusButton } = useMenu();
   const [showAlert, setShowAlert] = useState(false);
-  const handleShowAlert = (parameters) => {
-    setShowAlert(parameters);
-    setTimeout(() => setShowAlert({...parameters, isShow: false}), 1500);
+  const divRef = useRef();
+  const handleShowAlert = () => {
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 1500);
   };
   useEffect(() => {
     const promise = listProducts({ page, per });
     promise.then((e) => {
       setProducts(e.data.productsList);
       setLastPage(Math.floor((e.data.totalLength - 1) / per) + 1);
+      divRef.current.scrollTo(0, 0);
     });
     promise.catch((e) => console.log(e));
   }, [page]);
 
   return (
-    <StyledHome>
+    <StyledHome ref={divRef}>
       {products.length === 0 ? (
-        <LoadingProducts color={`main`} />
+        <LoadingProducts />
       ) : (
         products.map((i) => (
           <ProductCard
@@ -50,13 +52,13 @@ const ProductPage = () => {
       ) : (
         ""
       )}
-      {showAlert.isShow && (
+      {showAlert && (
         <Alert
           description={showAlert.description}
           success={showAlert.success}
         />
       )}
-      {statusButton && <CartPage/>}
+      {statusButton && <CartPage />}
     </StyledHome>
   );
 };
