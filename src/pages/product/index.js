@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Alert from "../../components/alert/Alert";
 import Arrows from "../../components/arrows/Arrows";
 import { StyledHome } from "./Index.styled";
@@ -12,6 +12,7 @@ const ProductPage = () => {
   const [page, setPage] = useState(1)
   const [products, setProducts] = useState([])
   const [showAlert, setShowAlert] = useState(false);
+  const divRef = useRef()
   const handleShowAlert = () => {
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 1500);
@@ -21,13 +22,13 @@ const ProductPage = () => {
     promise.then((e) => {
       setProducts(e.data.productsList)
       setLastPage(Math.floor((e.data.totalLength-1)/per)+1)
-      
+      divRef.current.scrollTo(0,0)
     })
     promise.catch((e) => console.log(e))
   }, [page])
 
   return (
-    <StyledHome>
+    <StyledHome ref={divRef}>
       {products.length===0 ? <LoadingProducts/> : products.map((i) => <ProductCard handleShowAlert={handleShowAlert} key={i._id} name={i.name} image={i.image} rating={i.rating} price={i.price}/>)}
       {products.length!==0 ? <Arrows page={page} setPage={setPage} lastPage={lastPage}/> : ''}
       {showAlert && (
