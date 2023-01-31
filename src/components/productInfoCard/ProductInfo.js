@@ -31,7 +31,7 @@ const ProductInfo = ({ product }) => {
       return;
     }
     try {
-      const newCartAdd = handleAddItem(user.cart, product);
+      const newCartAdd = handleAddItem(user?.cart, product);
       updateUser({ cart: newCartAdd }, token);
       setUser({ ...user, cart: newCartAdd });
     } catch (error) {

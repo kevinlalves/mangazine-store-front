@@ -8,6 +8,9 @@ import { useAuth } from "../../providers/AuthProvider";
 import { setOrder } from "../../services/mangazine-store-api";
 import SuccessPurchasePage from "./components/successPurchase";
 import CheckoutData from "./components/CheckoutData";
+import isEmpty from "../../utils/functions/isEmpty";
+import { useMenu } from "../../providers/MenuProvider";
+import Footer from "../../components/footer/Footer";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -15,19 +18,22 @@ const CheckoutPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { token } = useAuth();
   const [isFinishedCheckout, setIsFinishedCheckout] = useState(false);
-  const totalPrice = calculateTotalPrice(user.cart);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [selectedPayment, setSelectedPayment] = useState("pix");
+  const { statusButton } = useMenu();
 
   useEffect(() => {
-    if (!user || !user.cart.length) {
-      navigate("/");
+    if ((!user || isEmpty(user)) && statusButton.orders) {
+      return navigate("/sign-in");
     }
-  }, [user, user.cart, navigate]);
+
+    setTotalPrice(calculateTotalPrice(user?.cart));
+  }, [user, user?.cart, navigate, statusButton.orders]);
 
   const handleBuyButtonClick = async () => {
     const order = {
-      address: user.address,
-      cart: user.cart,
+      address: user?.address,
+      cart: user?.cart,
       paymentMethod: selectedPayment,
     };
     console.log(order)
@@ -49,19 +55,22 @@ const CheckoutPage = () => {
       </CheckoutStyled>
     );
   }
-  return (
-    <CheckoutStyled>
-      {isFinishedCheckout ? (
-        <SuccessPurchasePage />
-      ) : (
-        <CheckoutData
-          handleBuyButtonClick={handleBuyButtonClick}
-          setSelectedPayment={setSelectedPayment}
-          selectedPayment={selectedPayment}
-          totalPrice={totalPrice}
-        />
-      )}
-    </CheckoutStyled>
+  return (user && !isEmpty(user)) && (
+    <>
+      <CheckoutStyled>
+        {isFinishedCheckout ? (
+          <SuccessPurchasePage />
+        ) : (
+          <CheckoutData
+            handleBuyButtonClick={handleBuyButtonClick}
+            setSelectedPayment={setSelectedPayment}
+            selectedPayment={selectedPayment}
+            totalPrice={totalPrice}
+          />
+        )}
+      </CheckoutStyled>
+      <Footer />
+    </>
   );
 };
 

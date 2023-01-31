@@ -16,7 +16,7 @@ const SingleProductPage = () => {
       setProduct(e.data);
     });
     promise.catch((e) => console.log(e));
-  }, []);
+  }, [id]);
 
   return (
     <StyledHome>

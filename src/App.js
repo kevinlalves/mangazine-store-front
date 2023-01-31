@@ -11,6 +11,7 @@ import AuthProvider from "./providers/AuthProvider";
 import OrdersPage from "./pages/orders";
 import CheckoutPage from "./pages/checkout";
 import SingleProductPage from "./pages/product/SingleProductPage";
+import CartPage from "./pages/cart";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
                 <Route path="/sign-up" element={<SignUpPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/orders" element={<OrdersPage />} />
+                <Route path="/cart" element={<CartPage />} />
               </Routes>
             </UserProvider>
           </AuthProvider>

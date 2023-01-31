@@ -33,7 +33,7 @@ const CheckoutData = ({
           <div>Preço</div>
         </Item>
         <section>
-          {user.cart.map((c) => (
+          {user?.cart.map((c) => (
             <ProductCard
               key={c.product._id}
               product={c.product}
